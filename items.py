@@ -1,6 +1,6 @@
 import pygame
 class Item(pygame.sprite.Sprite):
-    def __init__(self, x , y, item_type, animation_list):
+    def __init__(self, x , y, item_type, animation_list, score_coin = False):
         pygame.sprite.Sprite.__init__(self)
         self.item_type = item_type                       # 0 = coin, 1 = portion
         self.animation_list = animation_list
@@ -9,15 +9,24 @@ class Item(pygame.sprite.Sprite):
         self.image = self.animation_list[self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
+        self.score_coin = score_coin
 
-    def update(self, player):
+    def update(self, screen_scroll, player, coin_fx, heal_fx):
+        if not self.score_coin:
+            #Reposition based on screen scroll
+            self.rect.x += screen_scroll[0]
+            self.rect.y += screen_scroll[1]
+
+
         # check collision with player
         if self.rect.colliderect(player.rect):
             #coin collected
             if self.item_type == 0:
                 player.score += 1
+                coin_fx.play()
             elif self.item_type == 1:
                 player.health += 10
+                heal_fx.play()
                 if player.health > 100:
                     player.health = 100
             self.kill()
