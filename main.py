@@ -13,6 +13,8 @@ mixer.init()
 pygame.init()
 #screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 # SETUP GAME
+icon = pygame.image.load("assets/images/characters/elf/idle/0.png")
+pygame.display.set_icon(icon)
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 pygame.display.set_caption("Hell Dungeon")
 clock = pygame.time.Clock()
