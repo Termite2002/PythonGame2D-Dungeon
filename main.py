@@ -11,7 +11,7 @@ from button import Button
 
 mixer.init()
 pygame.init()
-
+#screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 # SETUP GAME
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 pygame.display.set_caption("Hell Dungeon")
